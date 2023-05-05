@@ -11,7 +11,7 @@ const HeroBanner = () => {
         showThumbs={true}
         showIndicators={true}
         showStatus={false}
-        thumbWidth={140}
+        thumbWidth={115}
       >
         <div>
           <img
