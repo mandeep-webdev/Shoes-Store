@@ -43,7 +43,10 @@ const Header = () => {
     >
       <Wrapper className="h-[60px] flex justify-between items-center">
         <Link href="/">
-          <img src="/assets/main-logo.png" className="w-[110px] md:w-[220px]" />
+          <img
+            src="/assets/main-logo1.png"
+            className="w-[110px] md:w-[220px]"
+          />
         </Link>
         <Menu showCatMenu={showCatMenu} setShowCatMenu={setShowCatMenu} />
         {mobileMenu && (
