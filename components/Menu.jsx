@@ -9,14 +9,15 @@ const data = [
   { id: 4, name: 'Contact', url: '/contact' },
 ];
 
-const subMenuData = [
-  { id: 1, name: 'Jordan', doc_count: 11 },
-  { id: 2, name: 'Sneakers', doc_count: 8 },
-  { id: 3, name: 'Running shoes', doc_count: 64 },
-  { id: 4, name: 'Football shoes', doc_count: 107 },
-];
+// const subMenuData = [
+//   { id: 1, name: 'Jordan', doc_count: 11 },
+//   { id: 2, name: 'Sneakers', doc_count: 8 },
+//   { id: 3, name: 'Running shoes', doc_count: 64 },
+//   { id: 3, name: 'Gym and Training', doc_count: 64 },
+//   { id: 4, name: 'Football shoes', doc_count: 107 },
+// ];
 
-const Menu = ({ showCatMenu, setShowCatMenu }) => {
+const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
   return (
     <ul className="hidden md:flex items-center gap-8 font-medium text-black">
       {data.map((item) => {
@@ -36,19 +37,19 @@ const Menu = ({ showCatMenu, setShowCatMenu }) => {
                 <BiChevronDown size={14} />
                 {showCatMenu && (
                   <ul className="bg-white absolute top-6 left-0 min-w-[250px] px-1 py-1 text-black shadow-lg">
-                    {subMenuData.map((subMenu) => {
+                    {categories?.map((category) => {
                       return (
                         <Link
-                          href="/"
-                          key={subMenu.id}
+                          href={`/category/${category.attributes.slug}`}
+                          key={category?.id}
                           onClick={() => {
                             setShowCatMenu(false);
                           }}
                         >
                           <li className="h-12 flex justify-between items-center px-3 hover:bg-black/[0.04] rounded-md">
-                            {subMenu.name}
+                            {category?.attributes?.name}
                             <span className="opacity-50 text-sm">
-                              {subMenu.doc_count}
+                              {category?.attributes?.products?.data.length}
                             </span>
                           </li>
                         </Link>

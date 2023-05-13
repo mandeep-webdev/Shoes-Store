@@ -3,7 +3,7 @@ import Menu from './Menu';
 import MobileMenu from './MobileMenu';
 import Link from 'next/link';
 import Wrapper from './Wrapper';
-
+import { fetchDataFromApi } from '@/utils/api';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { BsCart } from 'react-icons/bs';
 import { BiMenuAltRight } from 'react-icons/bi';
@@ -14,6 +14,7 @@ const Header = () => {
   const [showCatMenu, setShowCatMenu] = useState(false);
   const [show, setShow] = useState('translate-y-0');
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [categories, setCategories] = useState(null);
 
   const controlNavbar = () => {
     if (window.scrollY > 200) {
@@ -37,6 +38,15 @@ const Header = () => {
     };
   }, [lastScrollY]);
 
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getCategories = async () => {
+    const { data } = await fetchDataFromApi('/api/categories?populate=*');
+    setCategories(data);
+  };
+
   return (
     <header
       className={`w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show}`}
@@ -48,12 +58,17 @@ const Header = () => {
             className="w-[110px] md:w-[220px]"
           />
         </Link>
-        <Menu showCatMenu={showCatMenu} setShowCatMenu={setShowCatMenu} />
+        <Menu
+          showCatMenu={showCatMenu}
+          setShowCatMenu={setShowCatMenu}
+          categories={categories}
+        />
         {mobileMenu && (
           <MobileMenu
             showCatMenu={showCatMenu}
             setShowCatMenu={setShowCatMenu}
             setMobileMenu={setMobileMenu}
+            categories={categories}
           />
         )}
         {/* icons start */}
