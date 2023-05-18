@@ -36,14 +36,6 @@ const Category = ({ category, products, slug }) => {
           {data?.data?.map((product) => (
             <ProductCard product={product} key={product?.id} />
           ))}
-          {/* <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard /> */}
         </div>
         {/* products grid end */}
         {/* PAGINATION BUTTONS START */}

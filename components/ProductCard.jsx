@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
   // const { name, price, original_price, slug, thumbnail } = product?.attributes;
   return (
     <Link
-      href={`/products/${product?.attributes?.slug}`}
+      href={`/product/${product?.attributes?.slug}`}
       className="transform overflow-hidden bg-white duration-200 hover:scale-105 cursor-pointer"
     >
       <Image
